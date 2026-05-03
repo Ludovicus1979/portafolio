@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luis Antonio Peña Deobarro – Técnico Informático</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:       #f8f5ff;
+  --white:    #ffffff;
+  --dark:     #0f0a1e;
+  --purple:   #7c3aed;
+  --violet:   #a855f7;
+  --pink:     #ec4899;
+  --cyan:     #06b6d4;
+  --orange:   #f97316;
+  --green:    #10b981;
+  --yellow:   #fbbf24;
+  --text:     #1e1b4b;
+  --muted:    #6b7280;
+  --border:   #e5e7eb;
+  --card:     #ffffff;
+  --mono:     'Space Mono', monospace;
+  --sans:     'Inter', sans-serif;
+  --grad1:    linear-gradient(135deg, #7c3aed, #ec4899);
+  --grad2:    linear-gradient(135deg, #06b6d4, #a855f7);
+  --grad3:    linear-gradient(135deg, #f97316, #ec4899);
+  --grad4:    linear-gradient(135deg, #10b981, #06b6d4);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: var(--sans); overflow-x: hidden; }
+
+/* ── BLOBS DE FONDO ── */
+.blob {
+  position: fixed; border-radius: 50%; filter: blur(80px);
+  opacity: 0.12; pointer-events: none; z-index: 0;
+}
+.blob-1 { width: 500px; height: 500px; background: var(--purple); top: -100px; left: -100px; }
+.blob-2 { width: 400px; height: 400px; background: var(--pink); top: 40%; right: -100px; }
+.blob-3 { width: 350px; height: 350px; background: var(--cyan); bottom: -100px; left: 30%; }
+
+/* ── NAV ── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 3rem;
+  background: rgba(248,245,255,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(124,58,237,0.12);
+}
+.nav-logo {
+  font-family: var(--mono); font-size: 0.82rem; font-weight: 700;
+  background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; letter-spacing: 0.05em;
+}
+.nav-links { display: flex; gap: 0.3rem; list-style: none; }
+.nav-links a {
+  font-size: 0.78rem; font-weight: 500; color: var(--muted);
+  text-decoration: none; padding: 0.4rem 0.9rem; border-radius: 20px;
+  transition: all 0.2s;
+}
+.nav-links a:hover { background: rgba(124,58,237,0.08); color: var(--purple); }
+
+/* ── HERO ── */
+#hero {
+  min-height: 100vh; display: flex; align-items: center;
+  padding: 9rem 3rem 5rem; position: relative;
+}
+.hero-content { position: relative; z-index: 1; max-width: 900px; }
+.hero-badge {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  background: white; border: 1px solid rgba(124,58,237,0.2);
+  padding: 0.45rem 1rem; border-radius: 30px; margin-bottom: 2rem;
+  box-shadow: 0 4px 20px rgba(124,58,237,0.1);
+  animation: fadeUp 0.6s ease both;
+}
+.badge-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+.badge-text { font-size: 0.76rem; font-weight: 600; color: var(--green); }
+.hero-eyebrow {
+  font-family: var(--mono); font-size: 0.78rem; color: var(--purple);
+  letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 1.2rem;
+  animation: fadeUp 0.6s 0.1s ease both;
+}
+h1 {
+  font-size: clamp(3rem, 8vw, 6.5rem); font-weight: 900;
+  line-height: 1; letter-spacing: -0.04em; margin-bottom: 1.5rem;
+  animation: fadeUp 0.6s 0.15s ease both;
+}
+h1 .gname {
+  background: var(--grad1); -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-desc {
+  font-size: 1.1rem; color: var(--muted); line-height: 1.75;
+  max-width: 600px; margin-bottom: 2.5rem; font-weight: 400;
+  animation: fadeUp 0.6s 0.2s ease both;
+}
+.hero-desc strong { color: var(--text); font-weight: 600; }
+.hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; animation: fadeUp 0.6s 0.25s ease both; }
+.btn {
+  font-size: 0.85rem; font-weight: 700; padding: 0.85rem 1.8rem;
+  border-radius: 12px; text-decoration: none; transition: all 0.22s; cursor: pointer;
+  display: inline-block; letter-spacing: 0.01em;
+}
+.btn-grad { background: var(--grad1); color: white; border: none; box-shadow: 0 4px 20px rgba(124,58,237,0.35); }
+.btn-grad:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(124,58,237,0.45); }
+.btn-outline { background: white; color: var(--purple); border: 2px solid rgba(124,58,237,0.3); }
+.btn-outline:hover { border-color: var(--purple); background: rgba(124,58,237,0.04); transform: translateY(-2px); }
+.hero-contact {
+  display: flex; gap: 2rem; margin-top: 3.5rem; padding-top: 2rem;
+  border-top: 2px dashed rgba(124,58,237,0.15); flex-wrap: wrap;
+  animation: fadeUp 0.6s 0.3s ease both;
+}
+.hc { display: flex; align-items: center; gap: 0.5rem; font-size: 0.82rem; color: var(--muted); text-decoration: none; transition: color 0.2s; font-weight: 500; }
+.hc:hover { color: var(--purple); }
+.hc-icon { font-size: 1rem; }
+
+/* ── FLOATING CARDS (hero decoration) ── */
+.hero-cards {
+  position: absolute; right: 3rem; top: 50%; transform: translateY(-50%);
+  display: flex; flex-direction: column; gap: 1rem; z-index: 1;
+}
+.fcard {
+  background: white; border-radius: 16px; padding: 1.2rem 1.5rem;
+  box-shadow: 0 8px 40px rgba(124,58,237,0.12);
+  border: 1px solid rgba(124,58,237,0.08);
+  min-width: 200px;
+  animation: floatCard 3s ease-in-out infinite;
+}
+.fcard:nth-child(2) { animation-delay: 1s; }
+.fcard:nth-child(3) { animation-delay: 2s; }
+.fcard-icon { font-size: 1.8rem; margin-bottom: 0.4rem; }
+.fcard-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.fcard-value { font-size: 1rem; font-weight: 800; color: var(--text); margin-top: 0.15rem; }
+
+/* ── SECTIONS ── */
+section { padding: 6rem 3rem; position: relative; z-index: 1; }
+.section-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  padding: 0.35rem 1rem; border-radius: 20px; margin-bottom: 1.2rem;
+}
+.tag-purple { background: rgba(124,58,237,0.1); color: var(--purple); }
+.tag-pink   { background: rgba(236,72,153,0.1); color: var(--pink); }
+.tag-cyan   { background: rgba(6,182,212,0.1);  color: var(--cyan); }
+.tag-orange { background: rgba(249,115,22,0.1); color: var(--orange); }
+.tag-green  { background: rgba(16,185,129,0.1); color: var(--green); }
+.sh2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; margin-bottom: 0.8rem; }
+.sh2 span { background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.sdesc { color: var(--muted); font-size: 1rem; max-width: 550px; line-height: 1.7; margin-bottom: 3rem; }
+
+/* ── ABOUT ── */
+#about { background: white; }
+.about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+.about-text p { color: var(--muted); line-height: 1.85; margin-bottom: 1rem; font-size: 0.95rem; }
+.about-text p strong { color: var(--text); font-weight: 600; }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.kpi {
+  background: var(--bg); border-radius: 16px; padding: 1.5rem;
+  border: 1px solid var(--border); text-align: center;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.kpi:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(124,58,237,0.12); }
+.kpi-num { font-size: 2.2rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 0.2rem; }
+.kpi-label { font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); }
+.kpi-num.c1 { background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-num.c2 { background: var(--grad2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-num.c3 { background: var(--grad3); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.kpi-num.c4 { background: var(--grad4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+/* ── EXPERIENCE ── */
+#experience { background: var(--bg); }
+.jobs { display: flex; flex-direction: column; gap: 1.5rem; }
+.job-card {
+  background: white; border-radius: 20px; padding: 2rem;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  display: grid; grid-template-columns: auto 1fr; gap: 1.5rem; align-items: start;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.job-card:hover { transform: translateY(-3px); box-shadow: 0 12px 40px rgba(124,58,237,0.1); }
+.job-icon {
+  width: 52px; height: 52px; border-radius: 14px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+}
+.ji-1 { background: linear-gradient(135deg, #7c3aed22, #ec489922); }
+.ji-2 { background: linear-gradient(135deg, #06b6d422, #a855f722); }
+.ji-3 { background: linear-gradient(135deg, #f9731622, #ec489922); }
+.ji-4 { background: linear-gradient(135deg, #10b98122, #06b6d422); }
+.job-info {}
+.job-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.3rem; }
+.job-title { font-size: 1.05rem; font-weight: 800; color: var(--text); }
+.job-period {
+  font-family: var(--mono); font-size: 0.7rem; font-weight: 700;
+  background: rgba(124,58,237,0.08); color: var(--purple);
+  padding: 0.25rem 0.75rem; border-radius: 20px; white-space: nowrap;
+}
+.job-company { font-size: 0.82rem; font-weight: 600; color: var(--purple); margin-bottom: 0.8rem; }
+.job-tasks { list-style: none; display: flex; flex-direction: column; gap: 0.3rem; }
+.job-tasks li { font-size: 0.87rem; color: var(--muted); padding-left: 1.2rem; position: relative; line-height: 1.6; }
+.job-tasks li::before { content: '→'; position: absolute; left: 0; color: var(--pink); font-weight: 700; }
+.practices-badge {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  margin-top: 0.8rem; font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  padding: 0.25rem 0.75rem; border-radius: 20px;
+  background: rgba(16,185,129,0.1); color: var(--green);
+}
+
+/* ── TFG ── */
+#tfg { background: white; }
+.tfg-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+.tfg-body h3 { font-size: 1.5rem; font-weight: 900; color: var(--text); margin-bottom: 1rem; line-height: 1.3; }
+.tfg-body p { color: var(--muted); line-height: 1.8; font-size: 0.92rem; margin-bottom: 0.9rem; }
+.tfg-body p strong { color: var(--text); font-weight: 600; }
+.tfg-pills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1.2rem 0; }
+.pill {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase;
+  padding: 0.3rem 0.8rem; border-radius: 20px; border: 1.5px solid;
+}
+.pill-purple { background: rgba(124,58,237,0.06); color: var(--purple); border-color: rgba(124,58,237,0.25); }
+.pill-cyan   { background: rgba(6,182,212,0.06);  color: var(--cyan);   border-color: rgba(6,182,212,0.25); }
+.pill-green  { background: rgba(16,185,129,0.06); color: var(--green);  border-color: rgba(16,185,129,0.25); }
+.pill-orange { background: rgba(249,115,22,0.06); color: var(--orange); border-color: rgba(249,115,22,0.25); }
+.pill-pink   { background: rgba(236,72,153,0.06); color: var(--pink);   border-color: rgba(236,72,153,0.25); }
+
+/* TFG preview card */
+.tfg-preview {
+  background: var(--dark); border-radius: 20px; overflow: hidden;
+  box-shadow: 0 20px 60px rgba(124,58,237,0.2);
+}
+.tfg-topbar {
+  background: #1a1030; padding: 0.9rem 1.2rem;
+  display: flex; align-items: center; gap: 0.8rem;
+}
+.tfg-dots { display: flex; gap: 0.4rem; }
+.tfg-dots span { width: 10px; height: 10px; border-radius: 50%; }
+.tfg-dots span:nth-child(1) { background: #ff5f57; }
+.tfg-dots span:nth-child(2) { background: #febc2e; }
+.tfg-dots span:nth-child(3) { background: #28c840; }
+.tfg-titlebar { flex: 1; text-align: center; font-family: var(--mono); font-size: 0.68rem; color: #6b7280; }
+.tfg-body-preview { padding: 2rem; }
+.tfg-main-title {
+  font-size: 1.1rem; font-weight: 900; color: white; margin-bottom: 0.5rem; line-height: 1.3;
+}
+.tfg-sub { font-family: var(--mono); font-size: 0.7rem; color: #a855f7; margin-bottom: 1.5rem; }
+.tfg-modules { display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; margin-bottom: 1.5rem; }
+.tfg-mod {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 8px; padding: 0.7rem 0.8rem;
+}
+.tfg-mod-icon { font-size: 1.1rem; margin-bottom: 0.2rem; }
+.tfg-mod-name { font-size: 0.68rem; font-weight: 600; color: rgba(255,255,255,0.7); line-height: 1.3; }
+.tfg-result-row { display: flex; align-items: center; justify-content: space-between; padding: 0.4rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.tfg-result-row:last-child { border-bottom: none; }
+.tfg-r-label { font-size: 0.68rem; color: rgba(255,255,255,0.5); }
+.tfg-r-val { font-family: var(--mono); font-size: 0.68rem; color: var(--green); font-weight: 700; }
+
+/* ── EDUCATION ── */
+#education { background: var(--bg); }
+.edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; }
+.edu-card {
+  background: white; border-radius: 16px; padding: 1.8rem;
+  border: 1px solid var(--border); position: relative; overflow: hidden;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.edu-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(124,58,237,0.1); }
+.edu-card.main { border: 2px solid rgba(124,58,237,0.3); }
+.edu-card.main::after {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+  background: var(--grad1);
+}
+.edu-current {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase;
+  padding: 0.22rem 0.6rem; border-radius: 20px;
+  background: rgba(124,58,237,0.1); color: var(--purple);
+}
+.edu-year { font-family: var(--mono); font-size: 0.68rem; font-weight: 700; color: var(--orange); margin-bottom: 0.5rem; }
+.edu-name { font-size: 0.95rem; font-weight: 800; color: var(--text); margin-bottom: 0.3rem; line-height: 1.35; }
+.edu-school { font-size: 0.78rem; font-weight: 500; color: var(--purple); }
+.edu-hours { font-size: 0.72rem; color: var(--muted); margin-top: 0.4rem; font-family: var(--mono); }
+
+/* ── SKILLS ── */
+#skills { background: white; }
+.skills-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 3rem; }
+.skill-block h4 {
+  font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  margin-bottom: 1rem; padding-bottom: 0.6rem; border-bottom: 2px solid var(--border);
+}
+.skill-block h4.pc { color: var(--purple); border-color: rgba(124,58,237,0.2); }
+.skill-block h4.cc { color: var(--cyan);   border-color: rgba(6,182,212,0.2); }
+.skill-block h4.gc { color: var(--pink);   border-color: rgba(236,72,153,0.2); }
+.skill-item {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.85rem; color: var(--text); font-weight: 500;
+  padding: 0.5rem 0; border-bottom: 1px solid var(--border); transition: color 0.2s;
+}
+.skill-item:last-child { border-bottom: none; }
+.skill-item:hover { color: var(--purple); }
+.si-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+.si-p { background: var(--purple); }
+.si-c { background: var(--cyan); }
+.si-g { background: var(--pink); }
+.certs-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1rem; }
+.cert-card {
+  background: var(--bg); border-radius: 14px; padding: 1.3rem 1.5rem;
+  display: flex; align-items: center; gap: 1rem; border: 1px solid var(--border);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.cert-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(124,58,237,0.1); }
+.cert-emoji { font-size: 2rem; }
+.cert-name { font-size: 0.85rem; font-weight: 700; color: var(--text); }
+.cert-iss { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; }
+
+/* ── CONTACT ── */
+#contact { background: var(--dark); position: relative; overflow: hidden; }
+#contact::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 30% 50%, rgba(124,58,237,0.15) 0%, transparent 60%),
+              radial-gradient(ellipse at 70% 50%, rgba(236,72,153,0.1) 0%, transparent 60%);
+}
+.contact-inner { position: relative; z-index: 1; text-align: center; }
+.contact-inner .sh2 { color: white; }
+.contact-inner .sh2 span { background: var(--grad1); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.contact-inner .sdesc { color: rgba(255,255,255,0.5); max-width: 480px; margin: 0 auto 3rem; }
+.contact-cards { display: flex; justify-content: center; gap: 1.2rem; flex-wrap: wrap; margin-bottom: 2.5rem; }
+.ccard {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 16px; padding: 1.5rem 2rem; text-align: left;
+  text-decoration: none; min-width: 200px;
+  transition: background 0.3s, transform 0.3s;
+}
+.ccard:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+.ccard-icon { font-size: 1.5rem; margin-bottom: 0.6rem; }
+.ccard-label { font-size: 0.65rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: rgba(255,255,255,0.4); margin-bottom: 0.3rem; }
+.ccard-val { font-size: 0.85rem; font-weight: 600; color: white; }
+
+/* ── FOOTER ── */
+footer {
+  background: #080615; padding: 1.8rem 3rem;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-l { font-size: 0.75rem; color: rgba(255,255,255,0.3); }
+.footer-l span { color: rgba(124,58,237,0.8); }
+.footer-r { font-size: 0.7rem; color: rgba(255,255,255,0.2); }
+
+/* ── PROJECTS ── */
+#projects { background: var(--bg); }
+.projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.proj-card {
+  background: white; border-radius: 20px; overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+  transition: transform 0.3s, box-shadow 0.3s;
+  display: flex; flex-direction: column;
+}
+.proj-card:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(124,58,237,0.13); }
+.proj-card.featured { grid-column: span 2; }
+.proj-thumb {
+  height: 160px; display: flex; align-items: center; justify-content: center;
+  font-size: 3.5rem; position: relative; overflow: hidden;
+}
+.proj-card.featured .proj-thumb { height: 200px; }
+.pt-1 { background: linear-gradient(135deg, #7c3aed22, #ec489933); }
+.pt-2 { background: linear-gradient(135deg, #06b6d422, #a855f733); }
+.pt-3 { background: linear-gradient(135deg, #f9731622, #fbbf2433); }
+.pt-4 { background: linear-gradient(135deg, #10b98122, #06b6d433); }
+.pt-5 { background: linear-gradient(135deg, #ec489922, #a855f733); }
+.pt-6 { background: linear-gradient(135deg, #7c3aed22, #06b6d433); }
+.proj-thumb-badge {
+  position: absolute; top: 1rem; right: 1rem;
+  font-size: 0.6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 0.25rem 0.65rem; border-radius: 20px;
+  background: rgba(255,255,255,0.85); color: var(--text);
+}
+.proj-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
+.proj-cat {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em;
+  margin-bottom: 0.5rem;
+}
+.proj-name { font-size: 1.05rem; font-weight: 800; color: var(--text); margin-bottom: 0.6rem; line-height: 1.3; }
+.proj-desc { font-size: 0.83rem; color: var(--muted); line-height: 1.65; flex: 1; margin-bottom: 1rem; }
+.proj-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+.proj-tag {
+  font-size: 0.62rem; font-weight: 600; letter-spacing: 0.05em;
+  padding: 0.2rem 0.6rem; border-radius: 20px;
+  background: var(--bg); border: 1px solid var(--border); color: var(--muted);
+}
+.proj-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 1rem; border-top: 1px solid var(--border); }
+.proj-status { display: flex; align-items: center; gap: 0.4rem; font-size: 0.68rem; font-weight: 600; }
+.ps-dot { width: 6px; height: 6px; border-radius: 50%; }
+.ps-real { background: var(--green); }
+.ps-example { background: var(--orange); }
+.proj-link {
+  font-size: 0.72rem; font-weight: 700; color: var(--purple); text-decoration: none;
+  display: flex; align-items: center; gap: 0.3rem; transition: gap 0.2s;
+}
+.proj-link:hover { gap: 0.6rem; }
+
+/* ── ANIMATIONS ── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16,185,129,0.4); }
+  50%       { box-shadow: 0 0 0 6px rgba(16,185,129,0); }
+}
+@keyframes floatCard {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero-cards { display: none; }
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 0; }
+  .nav-links a { padding: 0.4rem 0.6rem; font-size: 0.7rem; }
+  section { padding: 4rem 1.5rem; }
+  #hero { padding: 7rem 1.5rem 4rem; }
+  .about-layout, .tfg-layout { grid-template-columns: 1fr; gap: 2.5rem; }
+  .edu-grid { grid-template-columns: 1fr 1fr; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .projects-grid { grid-template-columns: 1fr; }
+  .proj-card.featured { grid-column: span 1; }
+  footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+}
+@media (max-width: 580px) {
+  .edu-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="nav-logo">LAPD · PORTFOLIO</div>
+  <ul class="nav-links">
+    <li><a href="#about">Perfil</a></li>
+    <li><a href="#experience">Experiencia</a></li>
+    <li><a href="#tfg">TFG</a></li>
+    <li><a href="#projects">Proyectos</a></li>
+    <li><a href="#education">Formación</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contacto</a></li>
+  </ul>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="badge-dot"></div>
+      <span class="badge-text">Disponible para nuevas oportunidades</span>
+    </div>
+    <div class="hero-eyebrow">Técnico de Soporte Informático · Salamanca</div>
+    <h1>
+      Luis Antonio<br>
+      <span class="gname">Peña Deobarro</span>
+    </h1>
+    <p class="hero-desc">
+      Especializado en <strong>Sistemas Microinformáticos, Redes y Ciberseguridad</strong>.
+      Combino experiencia técnica real con formación avanzada para aportar soluciones de seguridad robustas y eficientes.
+    </p>
+    <div class="hero-btns">
+      <a href="#contact" class="btn btn-grad">Contactar →</a>
+      <a href="#experience" class="btn btn-outline">Ver experiencia</a>
+    </div>
+    <div class="hero-contact">
+      <a href="tel:+34654175098" class="hc"><span class="hc-icon">📞</span> +34 654 17 50 98</a>
+      <a href="mailto:Tyrionpf@hotmail.com" class="hc"><span class="hc-icon">✉️</span> Tyrionpf@hotmail.com</a>
+    </div>
+  </div>
+  <div class="hero-cards">
+    <div class="fcard">
+      <div class="fcard-icon">🔐</div>
+      <div class="fcard-label">Especialidad</div>
+      <div class="fcard-value">Ciberseguridad</div>
+    </div>
+    <div class="fcard">
+      <div class="fcard-icon">🎓</div>
+      <div class="fcard-label">Graduación</div>
+      <div class="fcard-value">SMR · 2026</div>
+    </div>
+    <div class="fcard">
+      <div class="fcard-icon">📜</div>
+      <div class="fcard-label">Certificaciones</div>
+      <div class="fcard-value">4 completadas</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOBRE MÍ ── -->
+<section id="about">
+  <div class="section-tag tag-purple">01 — Sobre mí</div>
+  <div class="about-layout">
+    <div class="about-text">
+      <h2 class="sh2">Un profesional <span>polivalente</span> en transición</h2>
+      <p>Cuento con una trayectoria sólida en entornos industriales y logísticos que me ha formado en la precisión, la responsabilidad y el trabajo bajo presión. Ahora enfoco esa experiencia hacia el mundo IT.</p>
+      <p>Actualmente cursando el <strong>Grado Medio en Sistemas Microinformáticos y Redes</strong> en el IES Venancio Blanco de Salamanca, con formación complementaria en <strong>ciberseguridad, redes y soporte técnico</strong>.</p>
+      <p>Mi TFG — un plan de seguridad informática real implantado en mi propio instituto — refleja mi capacidad para <strong>analizar, diseñar e implementar soluciones técnicas</strong> en entornos reales con recursos limitados.</p>
+      <p>También cuento con experiencia práctica en <strong>desarrollo web y aplicaciones</strong>, adquirida durante mis prácticas formativas en la administración pública.</p>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi">
+        <div class="kpi-num c1">4+</div>
+        <div class="kpi-label">Certificaciones</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num c2">1350h</div>
+        <div class="kpi-label">Formación técnica</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num c3">5+</div>
+        <div class="kpi-label">Años exp. laboral</div>
+      </div>
+      <div class="kpi">
+        <div class="kpi-num c4">2026</div>
+        <div class="kpi-label">Titulación SMR</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── EXPERIENCIA ── -->
+<section id="experience">
+  <div class="section-tag tag-pink">02 — Experiencia</div>
+  <h2 class="sh2">Trayectoria <span>laboral</span></h2>
+  <p class="sdesc">Experiencia en entornos exigentes que me han formado en la precisión, la responsabilidad y la resolución de problemas.</p>
+  <div class="jobs">
+
+    <div class="job-card">
+      <div class="job-icon ji-1">⚡</div>
+      <div class="job-info">
+        <div class="job-top">
+          <div class="job-title">Operario de Producción</div>
+          <div class="job-period">2023 – 2025</div>
+        </div>
+        <div class="job-company">Construcciones Eléctricas Jara</div>
+        <ul class="job-tasks">
+          <li>Montaje de transformadores eléctricos con alto nivel de precisión técnica.</li>
+          <li>Manejo de puente grúa, transpaleta eléctrica, manual y carretilla elevadora.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-icon ji-2">📦</div>
+      <div class="job-info">
+        <div class="job-top">
+          <div class="job-title">Carretillero</div>
+          <div class="job-period">2022</div>
+        </div>
+        <div class="job-company">Kimberly Clark</div>
+        <ul class="job-tasks">
+          <li>Abastecimiento de material en líneas de producción y almacenamiento.</li>
+          <li>Gestión de carga con carretilla elevadora, puente grúa y transpaleta eléctrica.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-icon ji-3">🏪</div>
+      <div class="job-info">
+        <div class="job-top">
+          <div class="job-title">Mozo de Almacén</div>
+          <div class="job-period">2021 – 2022</div>
+        </div>
+        <div class="job-company">El Corte Inglés</div>
+        <ul class="job-tasks">
+          <li>Recepción de mercancía y gestión de pallets.</li>
+          <li>Reparto de mercancía por departamentos.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="job-card">
+      <div class="job-icon ji-4">💻</div>
+      <div class="job-info">
+        <div class="job-top">
+          <div class="job-title">Técnico en Prácticas – Desarrollo Web &amp; Aplicaciones</div>
+          <div class="job-period">Feb – Jun 2016</div>
+        </div>
+        <div class="job-company">Centro Público / Administración</div>
+        <ul class="job-tasks">
+          <li>Desarrollo y mantenimiento de páginas web institucionales.</li>
+          <li>Creación de aplicaciones a medida para uso interno de la entidad.</li>
+          <li>Colaboración en la planificación y despliegue de proyectos digitales.</li>
+        </ul>
+        <span class="practices-badge">🎓 Prácticas formativas</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── TFG ── -->
+<section id="tfg">
+  <div class="section-tag tag-cyan">03 — TFG</div>
+  <div class="tfg-layout">
+    <div class="tfg-body">
+      <h2 class="sh2">Seguridad Informática en un <span>entorno educativo</span></h2>
+      <h3>SecuraNet Soluciones TIC · IES Venancio Blanco</h3>
+      <p>Diseño e implantación de un <strong>plan completo de seguridad informática</strong> para el IES Venancio Blanco de Salamanca. El proyecto parte del análisis de la infraestructura real del instituto e identifica sus vulnerabilidades para proponer y ejecutar soluciones técnicas reales.</p>
+      <p>La solución implementada incluye <strong>segmentación de red por VLANs</strong>, firewall perimetral con OPNsense, filtrado de contenidos, servidor NAS con copias de seguridad automáticas y simulaciones de ataques de phishing para formación del personal.</p>
+      <p>Todo el sistema se construyó con <strong>software Open Source</strong>, consiguiendo un ahorro de más de 1.150€ frente a soluciones propietarias equivalentes, con un coste total de 1.605€.</p>
+      <div class="tfg-pills">
+        <span class="pill pill-purple">OPNsense</span>
+        <span class="pill pill-cyan">VLANs 802.1Q</span>
+        <span class="pill pill-green">Ubuntu Server</span>
+        <span class="pill pill-orange">NAS + RAID 1</span>
+        <span class="pill pill-pink">Gophish</span>
+        <span class="pill pill-purple">Wireshark</span>
+        <span class="pill pill-cyan">ClamAV</span>
+        <span class="pill pill-green">Rsync Backup</span>
+      </div>
+      <p style="font-size:0.8rem; color:var(--muted); margin-top:0.5rem;">
+        <strong style="color:var(--text);">Tutor:</strong> Fernando Fernández Fidalgo &nbsp;·&nbsp; <strong style="color:var(--text);">Centro:</strong> IES Venancio Blanco, Salamanca
+      </p>
+    </div>
+    <div class="tfg-preview">
+      <div class="tfg-topbar">
+        <div class="tfg-dots"><span></span><span></span><span></span></div>
+        <div class="tfg-titlebar">SecuraNet – TFG SMR 2025/2026</div>
+      </div>
+      <div class="tfg-body-preview">
+        <div class="tfg-main-title">Seguridad Informática en un entorno educativo</div>
+        <div class="tfg-sub">🛡️ SecuraNet Soluciones TIC · IES Venancio Blanco</div>
+        <div class="tfg-modules">
+          <div class="tfg-mod"><div class="tfg-mod-icon">🔥</div><div class="tfg-mod-name">Firewall OPNsense</div></div>
+          <div class="tfg-mod"><div class="tfg-mod-icon">🌐</div><div class="tfg-mod-name">VLANs 802.1Q</div></div>
+          <div class="tfg-mod"><div class="tfg-mod-icon">💾</div><div class="tfg-mod-name">NAS + RAID 1</div></div>
+          <div class="tfg-mod"><div class="tfg-mod-icon">🎣</div><div class="tfg-mod-name">Simulacro Phishing</div></div>
+        </div>
+        <div class="tfg-result-row"><span class="tfg-r-label">Filtrado web bloqueado</span><span class="tfg-r-val">100%</span></div>
+        <div class="tfg-result-row"><span class="tfg-r-label">Detección malware (EICAR)</span><span class="tfg-r-val">&lt; 3 segundos</span></div>
+        <div class="tfg-result-row"><span class="tfg-r-label">Restauración backup</span><span class="tfg-r-val">4 minutos</span></div>
+        <div class="tfg-result-row"><span class="tfg-r-label">Usuarios detectan phishing</span><span class="tfg-r-val">80%</span></div>
+        <div class="tfg-result-row"><span class="tfg-r-label">Ahorro vs. soluc. propietaria</span><span class="tfg-r-val">1.150 €</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROYECTOS ── -->
+<section id="projects">
+  <div class="section-tag tag-violet" style="background:rgba(168,85,247,0.1);color:#a855f7;">04 — Proyectos</div>
+  <h2 class="sh2">Proyectos <span>destacados</span></h2>
+  <p class="sdesc">Una selección de trabajos reales y proyectos de práctica que reflejan mis competencias técnicas.</p>
+  <div class="projects-grid">
+
+    <!-- TFG – REAL, FEATURED -->
+    <div class="proj-card featured">
+      <div class="proj-thumb pt-1">
+        🛡️
+        <div class="proj-thumb-badge">TFG · 2025</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat" style="color:var(--purple);">Ciberseguridad · Redes</div>
+        <div class="proj-name">SecuraNet – Seguridad Informática en entorno educativo</div>
+        <div class="proj-desc">Diseño e implantación de un plan de seguridad completo para el IES Venancio Blanco. Incluye firewall OPNsense, segmentación por VLANs, servidor NAS con RAID 1, backups automatizados y simulacros de phishing con Gophish. Todo con software Open Source, ahorrando más de 1.150€ frente a soluciones propietarias. 9 de 10 pruebas superadas al primer intento.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">OPNsense</span>
+          <span class="proj-tag">VLANs 802.1Q</span>
+          <span class="proj-tag">Ubuntu Server</span>
+          <span class="proj-tag">NAS + RAID 1</span>
+          <span class="proj-tag">Gophish</span>
+          <span class="proj-tag">ClamAV</span>
+          <span class="proj-tag">Wireshark</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-status"><div class="ps-dot ps-real"></div><span style="color:var(--green);">Proyecto real</span></div>
+          <span class="proj-link">IES Venancio Blanco, Salamanca →</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- C13.USAL.ES – REAL -->
+    <div class="proj-card">
+      <div class="proj-thumb pt-2">
+        🧪
+        <div class="proj-thumb-badge">Colaboración</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat" style="color:var(--cyan);">Desarrollo Web · Base de Datos</div>
+        <div class="proj-name">NAPROC-13 · c13.usal.es</div>
+        <div class="proj-desc">Colaboración en el desarrollo y mantenimiento de la plataforma web de la Universidad de Salamanca para búsqueda avanzada de compuestos orgánicos mediante espectroscopía de Carbono-13. Disponible en seis idiomas y utilizada por investigadores de todo el mundo.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Desarrollo Web</span>
+          <span class="proj-tag">Base de datos</span>
+          <span class="proj-tag">USAL</span>
+          <span class="proj-tag">Multi-idioma</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-status"><div class="ps-dot ps-real"></div><span style="color:var(--green);">Proyecto real</span></div>
+          <a href="http://c13.usal.es" target="_blank" class="proj-link">Ver web →</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- EJEMPLO 1 -->
+    <div class="proj-card">
+      <div class="proj-thumb pt-3">
+        🏠
+        <div class="proj-thumb-badge">Ejemplo</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat" style="color:var(--orange);">Redes · IoT</div>
+        <div class="proj-name">Red doméstica segmentada con Pi-hole</div>
+        <div class="proj-desc">Montaje de una red doméstica segmentada con VLANs para separar dispositivos IoT, equipos de trabajo y visitas. Integración de Pi-hole como bloqueador de anuncios y dominios maliciosos a nivel de DNS para toda la red.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Pi-hole</span>
+          <span class="proj-tag">VLANs</span>
+          <span class="proj-tag">DNS</span>
+          <span class="proj-tag">IoT</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-status"><div class="ps-dot ps-example"></div><span style="color:var(--orange);">Proyecto de práctica</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EJEMPLO 2 -->
+    <div class="proj-card">
+      <div class="proj-thumb pt-4">
+        🖥️
+        <div class="proj-thumb-badge">Ejemplo</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat" style="color:var(--green);">Sistemas · Virtualización</div>
+        <div class="proj-name">Laboratorio virtual con VirtualBox</div>
+        <div class="proj-desc">Creación de un entorno de laboratorio virtualizado con VirtualBox para practicar configuraciones de red, instalar servicios (DHCP, DNS, Samba) y simular escenarios de ataque y defensa sin afectar a sistemas reales.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">VirtualBox</span>
+          <span class="proj-tag">Ubuntu Server</span>
+          <span class="proj-tag">Windows Server</span>
+          <span class="proj-tag">Snapshots</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-status"><div class="ps-dot ps-example"></div><span style="color:var(--orange);">Proyecto de práctica</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EJEMPLO 3 -->
+    <div class="proj-card">
+      <div class="proj-thumb pt-5">
+        🌐
+        <div class="proj-thumb-badge">Ejemplo</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat" style="color:var(--pink);">Desarrollo Web</div>
+        <div class="proj-name">Web institucional responsive</div>
+        <div class="proj-desc">Diseño y desarrollo de un sitio web institucional adaptado a dispositivos móviles con HTML, CSS y JavaScript. Incluye formulario de contacto, galería de imágenes y panel de administración básico para gestión de contenidos.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">HTML</span>
+          <span class="proj-tag">CSS</span>
+          <span class="proj-tag">JavaScript</span>
+          <span class="proj-tag">Responsive</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-status"><div class="ps-dot ps-example"></div><span style="color:var(--orange);">Proyecto de práctica</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EJEMPLO 4 -->
+    <div class="proj-card">
+      <div class="proj-thumb pt-6">
+        🔍
+        <div class="proj-thumb-badge">Ejemplo</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat" style="color:var(--purple);">Ciberseguridad</div>
+        <div class="proj-name">Auditoría de contraseñas con Hashcat</div>
+        <div class="proj-desc">Práctica de auditoría de seguridad en entorno controlado: generación de hashes, ataque de diccionario con Hashcat y análisis de resultados. Proyecto orientado a demostrar la importancia de políticas de contraseñas robustas.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Hashcat</span>
+          <span class="proj-tag">Kali Linux</span>
+          <span class="proj-tag">Auditoría</span>
+          <span class="proj-tag">Entorno controlado</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-status"><div class="ps-dot ps-example"></div><span style="color:var(--orange);">Proyecto de práctica</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- EJEMPLO 5 -->
+    <div class="proj-card">
+      <div class="proj-thumb pt-3">
+        💾
+        <div class="proj-thumb-badge">Ejemplo</div>
+      </div>
+      <div class="proj-body">
+        <div class="proj-cat" style="color:var(--orange);">Sistemas · Backup</div>
+        <div class="proj-name">Sistema de backup automatizado con Rsync</div>
+        <div class="proj-desc">Diseño e implementación de un sistema de copias de seguridad incrementales automatizadas mediante scripts Bash y Rsync, ejecutados vía cron. Incluye rotación de backups, logs de actividad y notificaciones por email ante fallos.</div>
+        <div class="proj-tags">
+          <span class="proj-tag">Bash</span>
+          <span class="proj-tag">Rsync</span>
+          <span class="proj-tag">Cron</span>
+          <span class="proj-tag">Linux</span>
+        </div>
+        <div class="proj-footer">
+          <div class="proj-status"><div class="ps-dot ps-example"></div><span style="color:var(--orange);">Proyecto de práctica</span></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ── FORMACIÓN ── -->
+<section id="education">
+  <div class="section-tag tag-orange">05 — Formación</div>
+  <h2 class="sh2">Educación y <span>certificaciones</span></h2>
+  <p class="sdesc">Formación técnica continua combinando estudios reglados con certificaciones especializadas.</p>
+  <div class="edu-grid">
+    <div class="edu-card main">
+      <div class="edu-current">En curso</div>
+      <div class="edu-year">2024 – 2026</div>
+      <div class="edu-name">Grado Medio en Sistemas Microinformáticos y Redes</div>
+      <div class="edu-school">IES Venancio Blanco · Salamanca</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2025</div>
+      <div class="edu-name">Seguridad de Sistemas Informáticos y Comunicación</div>
+      <div class="edu-school">Training Consulting</div>
+      <div class="edu-hours">150 horas</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2024</div>
+      <div class="edu-name">Certificación en Ciberseguridad de Google</div>
+      <div class="edu-school">Coursera / Google</div>
+      <div class="edu-hours">150 horas</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2006</div>
+      <div class="edu-name">Administrador de Redes</div>
+      <div class="edu-school">IFE</div>
+      <div class="edu-hours">550 horas</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2001</div>
+      <div class="edu-name">Técnico de Mantenimiento y Reparación de Ordenadores</div>
+      <div class="edu-school">Master-D</div>
+      <div class="edu-hours">600 horas</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">1996</div>
+      <div class="edu-name">E.G.B. – Graduado Escolar</div>
+      <div class="edu-school">C.P. Alfonso X El Sabio</div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SKILLS ── -->
+<section id="skills">
+  <div class="section-tag tag-green">06 — Skills</div>
+  <h2 class="sh2">Habilidades <span>técnicas</span></h2>
+  <p class="sdesc">Competencias adquiridas a través de formación especializada, proyectos reales y práctica continua.</p>
+  <div class="skills-layout">
+    <div class="skill-block">
+      <h4 class="pc">🖧 Redes y Sistemas</h4>
+      <div class="skill-item"><div class="si-dot si-p"></div>Administración de redes TCP/IP</div>
+      <div class="skill-item"><div class="si-dot si-p"></div>Configuración routers y switches</div>
+      <div class="skill-item"><div class="si-dot si-p"></div>VLANs 802.1Q y segmentación</div>
+      <div class="skill-item"><div class="si-dot si-p"></div>DNS, DHCP, SMB</div>
+      <div class="skill-item"><div class="si-dot si-p"></div>Soporte técnico helpdesk</div>
+      <div class="skill-item"><div class="si-dot si-p"></div>Ubuntu Server / Linux</div>
+    </div>
+    <div class="skill-block">
+      <h4 class="cc">🔐 Ciberseguridad</h4>
+      <div class="skill-item"><div class="si-dot si-c"></div>Firewall OPNsense</div>
+      <div class="skill-item"><div class="si-dot si-c"></div>Filtrado de contenidos web</div>
+      <div class="skill-item"><div class="si-dot si-c"></div>Análisis con Wireshark</div>
+      <div class="skill-item"><div class="si-dot si-c"></div>Simulación phishing (Gophish)</div>
+      <div class="skill-item"><div class="si-dot si-c"></div>Antivirus ClamAV</div>
+      <div class="skill-item"><div class="si-dot si-c"></div>Google Cybersecurity Cert.</div>
+    </div>
+    <div class="skill-block">
+      <h4 class="gc">💻 Desarrollo y Otros</h4>
+      <div class="skill-item"><div class="si-dot si-g"></div>Desarrollo de páginas web</div>
+      <div class="skill-item"><div class="si-dot si-g"></div>Desarrollo de aplicaciones</div>
+      <div class="skill-item"><div class="si-dot si-g"></div>Scripts Bash / Rsync</div>
+      <div class="skill-item"><div class="si-dot si-g"></div>VirtualBox</div>
+      <div class="skill-item"><div class="si-dot si-g"></div>Carnet carretillero profesional</div>
+      <div class="skill-item"><div class="si-dot si-g"></div>Inglés nivel básico</div>
+    </div>
+  </div>
+  <div class="certs-row">
+    <div class="cert-card">
+      <span class="cert-emoji">🔒</span>
+      <div><div class="cert-name">Google Cybersecurity Certificate</div><div class="cert-iss">Coursera · 2024 · 150h</div></div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-emoji">🛡️</span>
+      <div><div class="cert-name">Seguridad de Sistemas y Comunicación</div><div class="cert-iss">Training Consulting · 2025 · 150h</div></div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-emoji">🖧</span>
+      <div><div class="cert-name">Administrador de Redes</div><div class="cert-iss">IFE · 2006 · 550h</div></div>
+    </div>
+    <div class="cert-card">
+      <span class="cert-emoji">🖥️</span>
+      <div><div class="cert-name">Técnico Mantenimiento y Reparación</div><div class="cert-iss">Master-D · 2001 · 600h</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CONTACTO ── -->
+<section id="contact">
+  <div class="contact-inner">
+    <div class="section-tag tag-purple" style="margin: 0 auto 1.5rem; width: fit-content;">07 — Contacto</div>
+    <h2 class="sh2" style="color:white; margin-bottom:0.8rem;">¿Hablamos? <span>Estoy disponible.</span></h2>
+    <p class="sdesc">Abierto a oportunidades en soporte técnico, redes, ciberseguridad o desarrollo.</p>
+    <div class="contact-cards">
+      <a href="tel:+34654175098" class="ccard">
+        <div class="ccard-icon">📞</div>
+        <div class="ccard-label">Teléfono</div>
+        <div class="ccard-val">+34 654 17 50 98</div>
+      </a>
+      <a href="mailto:Tyrionpf@hotmail.com" class="ccard">
+        <div class="ccard-icon">✉️</div>
+        <div class="ccard-label">Correo electrónico</div>
+        <div class="ccard-val">Tyrionpf@hotmail.com</div>
+      </a>
+      <div class="ccard">
+        <div class="ccard-icon">📍</div>
+        <div class="ccard-label">Ubicación</div>
+        <div class="ccard-val">Salamanca, España</div>
+      </div>
+    </div>
+    <a href="mailto:Tyrionpf@hotmail.com" class="btn btn-grad" style="font-size:0.9rem; padding:1rem 2.5rem;">
+      Enviar mensaje →
+    </a>
+  </div>
+</section>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-l"><span>Luis Antonio Peña Deobarro</span> · Salamanca · 2025</div>
+  <div class="footer-r">Hecho con 💜 y código limpio</div>
+</footer>
+
+</body>
+</html>
