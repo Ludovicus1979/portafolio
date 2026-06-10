@@ -33,7 +33,7 @@ body {
   overflow-x: hidden;
   cursor: default;
 }
-
+ 
 /* CRT scanline effect */
 body::before {
   content: '';
@@ -41,7 +41,7 @@ body::before {
   background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,255,65,0.015) 3px, rgba(0,255,65,0.015) 4px);
   pointer-events: none; z-index: 9999;
 }
-
+ 
 /* ── NAV ── */
 nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 200;
@@ -69,7 +69,7 @@ nav {
   width: 8px; height: 14px; background: var(--green);
   display: inline-block; animation: blink 1.2s step-end infinite; margin-left: 2px;
 }
-
+ 
 /* ── HERO ── */
 #hero {
   min-height: 100vh; display: flex; align-items: center;
@@ -141,7 +141,7 @@ nav {
 .btn-green:hover { background: rgba(0,255,65,0.15); box-shadow: 0 0 20px rgba(0,255,65,0.2); }
 .btn-cyan { border-color: var(--cyan); color: var(--cyan); background: rgba(0,229,255,0.05); }
 .btn-cyan:hover { background: rgba(0,229,255,0.12); box-shadow: 0 0 20px rgba(0,229,255,0.15); }
-
+ 
 /* ── SECTIONS ── */
 section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .sec-header { margin-bottom: 2.5rem; }
@@ -150,7 +150,7 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .sec-title { font-size: clamp(1.4rem, 3vw, 2.2rem); font-weight: 800; color: var(--text); letter-spacing: -0.02em; }
 .sec-title em { color: var(--green); font-style: normal; }
 .sec-line { height: 1px; background: linear-gradient(90deg, var(--green), transparent); opacity: 0.2; margin-top: 1rem; }
-
+ 
 /* ── ABOUT ── */
 #about { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .about-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 4rem; align-items: start; }
@@ -170,7 +170,7 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .kpi:hover::before { opacity: 1; }
 .kpi-num { font-size: 1.8rem; font-weight: 800; color: var(--green); line-height: 1; margin-bottom: 0.3rem; text-shadow: 0 0 20px rgba(0,255,65,0.3); }
 .kpi-label { font-size: 0.62rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.1em; }
-
+ 
 /* ── EXPERIENCE ── */
 #experience { background: var(--bg); }
 .jobs { display: flex; flex-direction: column; gap: 0; }
@@ -193,7 +193,7 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .job-tasks li { font-size: 0.78rem; color: var(--muted2); padding: 0.2rem 0; padding-left: 1.2rem; position: relative; line-height: 1.6; }
 .job-tasks li::before { content: '»'; position: absolute; left: 0; color: var(--green); font-size: 0.7rem; }
 .job-badge { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.6rem; font-size: 0.62rem; color: var(--green2); background: rgba(57,211,83,0.06); border: 1px solid rgba(57,211,83,0.2); padding: 0.18rem 0.6rem; border-radius: 3px; }
-
+ 
 /* ── PROJECTS ── */
 #projects { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .proj-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
@@ -228,7 +228,7 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .ps-dot-e  { width: 5px; height: 5px; border-radius: 50%; background: var(--yellow); }
 .proj-link { font-size: 0.65rem; color: var(--cyan); text-decoration: none; transition: color 0.2s; }
 .proj-link:hover { color: var(--green); }
-
+ 
 /* ── TFG ── */
 #tfg { background: var(--bg); }
 .tfg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
@@ -257,7 +257,7 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .tfg-line .ok { color: var(--green2); }
 .tfg-line .co { color: var(--muted2); }
 .tfg-divider { height: 1px; background: var(--border); margin: 0.8rem 0; }
-
+ 
 /* ── EDUCATION ── */
 #education { background: var(--bg2); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 .edu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
@@ -274,7 +274,7 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .edu-name { font-size: 0.82rem; font-weight: 700; color: var(--text); margin-bottom: 0.3rem; line-height: 1.35; }
 .edu-school { font-size: 0.68rem; color: var(--cyan); }
 .edu-hours { font-size: 0.62rem; color: var(--muted2); margin-top: 0.3rem; }
-
+ 
 /* ── SKILLS ── */
 #skills { background: var(--bg); }
 .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-bottom: 2.5rem; }
@@ -288,7 +288,7 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .cert-ico { font-size: 1.4rem; }
 .cert-name { font-size: 0.76rem; font-weight: 700; color: var(--text); margin-bottom: 0.15rem; }
 .cert-iss { font-size: 0.62rem; color: var(--muted2); }
-
+ 
 /* ── CONTACT ── */
 #contact { background: var(--bg2); border-top: 1px solid var(--border); }
 .contact-term {
@@ -303,17 +303,17 @@ section { padding: 5rem 2rem; position: relative; z-index: 1; }
 .ccard-ico { font-size: 1rem; width: 20px; text-align: center; }
 .ccard-label { font-size: 0.6rem; color: var(--muted2); text-transform: uppercase; letter-spacing: 0.1em; }
 .ccard-val { font-size: 0.78rem; color: var(--text); }
-
+ 
 /* ── FOOTER ── */
 footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1.2rem 2rem; display: flex; align-items: center; justify-content: space-between; }
 .footer-l { font-size: 0.65rem; color: var(--muted); }
 .footer-l span { color: var(--green); }
 .footer-r { font-size: 0.6rem; color: var(--muted); }
-
+ 
 /* ── ANIMATIONS ── */
 @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 @keyframes matrixFall { 0%{transform:translateY(-100%)} 100%{transform:translateY(100vh)} }
-
+ 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
   nav{padding:0.6rem 1rem;}
@@ -333,7 +333,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
 </style>
 </head>
 <body>
-
+ 
 <!-- ── NAV ── -->
 <nav>
   <div class="nav-prompt">
@@ -355,7 +355,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     <li><a href="#contact">contact</a></li>
   </ul>
 </nav>
-
+ 
 <!-- ── HERO ── -->
 <section id="hero">
   <div class="matrix-bg" id="matrix"></div>
@@ -368,18 +368,18 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
       <div class="tl"><span class="tl-prompt">luis@portfolio:~$</span><span class="tl-cmd">cat</span><span class="tl-arg">whoami.txt</span></div>
       <div class="big-name">Luis Antonio<br>Peña Deobarro</div>
       <div class="big-role">// Técnico de Soporte Informático · Salamanca, ES</div>
-
+ 
       <div class="tl tl-gap"><span class="tl-prompt">luis@portfolio:~$</span><span class="tl-cmd">./status.sh</span></div>
       <div class="status-line"><span class="status-ok">[  OK  ]</span> Disponible para nuevas oportunidades</div>
       <div class="status-line"><span class="status-ok">[  OK  ]</span> Grado Medio SMR en curso — IES Venancio Blanco 2026</div>
       <div class="status-line"><span class="status-ok">[  OK  ]</span> Certificación Google Cybersecurity activa</div>
       <div class="status-line"><span class="status-warn">[ WARN ]</span> Inglés nivel básico — en mejora continua</div>
-
+ 
       <div class="tl tl-gap"><span class="tl-prompt">luis@portfolio:~$</span><span class="tl-cmd">ls</span><span class="tl-arg">-la skills/</span></div>
       <div class="tl-out cyan">drwxr-xr-x  redes/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ciberseguridad/&nbsp;&nbsp;&nbsp;&nbsp;desarrollo-web/</div>
       <div class="tl-out purple">-rw-r--r--  opnsense&nbsp;&nbsp;&nbsp;vlans-802.1q&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ubuntu-server</div>
       <div class="tl-out purple">-rw-r--r--  wireshark&nbsp;&nbsp;gophish&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rsync-bash</div>
-
+ 
       <div class="hero-btns">
         <a href="#contact" class="btn-term btn-green">./contactar.sh</a>
         <a href="#experience" class="btn-term btn-cyan">cat experience.log</a>
@@ -387,7 +387,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     </div>
   </div>
 </section>
-
+ 
 <!-- ── ABOUT ── -->
 <section id="about">
   <div class="sec-header">
@@ -410,7 +410,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     </div>
   </div>
 </section>
-
+ 
 <!-- ── EXPERIENCE ── -->
 <section id="experience">
   <div class="sec-header">
@@ -466,7 +466,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     </div>
   </div>
 </section>
-
+ 
 <!-- ── PROJECTS ── -->
 <section id="projects">
   <div class="sec-header">
@@ -475,7 +475,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     <div class="sec-line"></div>
   </div>
   <div class="proj-grid">
-
+ 
     <div class="proj-card feat">
       <div class="proj-head">
         <div class="proj-head-dot"></div>
@@ -496,7 +496,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
     <div class="proj-card">
       <div class="proj-head">
         <div class="proj-head-dot" style="background:var(--cyan)"></div>
@@ -521,7 +521,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
     <div class="proj-card">
       <div class="proj-head">
         <div class="proj-head-dot" style="background:var(--green)"></div>
@@ -546,7 +546,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
     <div class="proj-card">
       <div class="proj-head">
         <div class="proj-head-dot" style="background:var(--yellow)"></div>
@@ -565,7 +565,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
     <div class="proj-card">
       <div class="proj-head">
         <div class="proj-head-dot" style="background:var(--purple)"></div>
@@ -584,7 +584,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
     <div class="proj-card">
       <div class="proj-head">
         <div class="proj-head-dot" style="background:var(--orange)"></div>
@@ -603,7 +603,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
     <div class="proj-card">
       <div class="proj-head">
         <div class="proj-head-dot" style="background:var(--red)"></div>
@@ -622,7 +622,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
     <div class="proj-card">
       <div class="proj-head">
         <div class="proj-head-dot" style="background:var(--cyan)"></div>
@@ -641,10 +641,10 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
         </div>
       </div>
     </div>
-
+ 
   </div>
 </section>
-
+ 
 <!-- ── TFG ── -->
 <section id="tfg">
   <div class="sec-header">
@@ -694,7 +694,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     </div>
   </div>
 </section>
-
+ 
 <!-- ── EDUCATION ── -->
 <section id="education">
   <div class="sec-header">
@@ -740,7 +740,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     </div>
   </div>
 </section>
-
+ 
 <!-- ── SKILLS ── -->
 <section id="skills">
   <div class="sec-header">
@@ -784,7 +784,7 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     <div class="cert-card"><span class="cert-ico">🖥️</span><div><div class="cert-name">Técnico Mantenimiento y Reparación</div><div class="cert-iss">Master-D · 2001 · 600h</div></div></div>
   </div>
 </section>
-
+ 
 <!-- ── CONTACT ── -->
 <section id="contact">
   <div class="sec-header">
@@ -817,13 +817,13 @@ footer { background: var(--bg2); border-top: 1px solid var(--border); padding: 1
     </div>
   </div>
 </section>
-
+ 
 <!-- ── FOOTER ── -->
 <footer>
   <div class="footer-l"><span>luis@portfolio</span>:~/smr$ exit</div>
   <div class="footer-r">// Luis Antonio Peña Deobarro · Salamanca 2025</div>
 </footer>
-
+ 
 <script>
 // Matrix rain background
 const matrix = document.getElementById('matrix');
@@ -843,3 +843,4 @@ for(let i = 0; i < cols; i++) {
 </script>
 </body>
 </html>
+ 
